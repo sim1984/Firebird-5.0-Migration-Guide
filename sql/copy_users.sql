@@ -3,7 +3,7 @@ set term ^;
 EXECUTE BLOCK
 AS
   -- замените на параметры вашей копии БД безопасности
-  DECLARE SRC_SEC_DB     VARCHAR(255) = 'f:\fbdata\4.0\SECURITY30.FDB';
+  DECLARE SRC_SEC_DB     VARCHAR(255) = 'f:\fbdata\5.0\SECURITY30.FDB';
   DECLARE SRC_SEC_USER   VARCHAR(63) = 'SYSDBA';
   ---------------------------------------------------
   DECLARE PLG$USER_NAME  SEC$USER_NAME;
