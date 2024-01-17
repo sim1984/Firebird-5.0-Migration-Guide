@@ -1,0 +1,26 @@
+:author: Симонов Денис
+:revnumber: v1.0
+:revdate: 20.04.2021
+:doctype: article
+:encoding: utf-8
+:lang: ru
+:icons: font
+:numbered:
+:sectnums:
+:experimental:
+:toc: left
+:toclevels: 4
+//:listing-caption: Код
+:figure-caption: Изображение
+:table-caption: Таблица
+:example-caption: Пример
+:chapter-label: Глава
+:toc-title: Оглавление
+:version-label: Версия
+:source-highlighter: coderay
+:stylesdir: {asciidoctorconfigdir}/theme/firebird-html
+:stylesheet: firebird.css
+:pdf-fontsdir: {asciidoctorconfigdir}/theme/fonts
+:pdf-themesdir: {asciidoctorconfigdir}/theme/firebird-pdf
+:pdf-theme: firebird
+
