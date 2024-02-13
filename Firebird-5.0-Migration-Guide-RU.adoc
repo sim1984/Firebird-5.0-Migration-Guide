@@ -87,11 +87,10 @@ CREATE USER SYSDBA PASSWORD '<password>';
 ====
 [listing,subs=+quotes]
 ----
-c:\Firebird\5.0>isql
+c:\Firebird\5.0>isql security.db -user SYSDBA
 
-Use CONNECT or CREATE DATABASE to specify a database
+Database: security.db, User: SYSDBA
 
-SQL> connect security.db user SYSDBA; Database: security.db, User: SYSDBA
 SQL> CREATE USER SYSDBA PASSWORD 'm8ku234pp';
 SQL> exit;
 
