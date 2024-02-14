@@ -94,7 +94,6 @@ Database: security.db, User: SYSDBA
 SQL> CREATE USER SYSDBA PASSWORD 'm8ku234pp';
 SQL> exit;
 
-c:\Firebird\5.0>
 ----
 ====
 
@@ -119,7 +118,6 @@ c:\Firebird\5.0>gsec -user SYSDBA -database security.db
 GSEC> add SYSDBA -pw m8ku234pp
 GSEC> quit
 
-c:\Firebird\5.0>
 ----
 ====
 
@@ -180,14 +178,13 @@ WireCrypt = Enabled
 ====
 [listing,subs=+quotes]
 ----
-c:\Firebird\5.0>isql
-Use CONNECT or CREATE DATABASE to specify a database
-SQL> connect security.db user sysdba;
+c:\Firebird\5.0>isql security.db -user SYSDBA
+
 Database: security.db, User: SYSDBA
+
 SQL> ALTER USER SYSDBA SET PASSWORD 'er34gfde' USING PLUGIN Legacy_UserManager;
 SQL> exit;
 
-c:\Firebird\5.0>
 ----
 ====
 
@@ -847,7 +844,7 @@ c:\Firebird\3.0>gbak -b -g -user SYSDBA security.db d:\fb30_backup\security.fbk
 +
 [listing,subs=+quotes]
 ----
-c:\Firebird\4.0>gbak -с -user SYSDBA -pas 8kej712 -se localhost/3054:service_mgr d:\fb30_backup\security.fbk d:\fb50_data\security_30.fdb
+c:\Firebird\5.0>gbak -с -user SYSDBA -pas 8kej712 -se localhost/3054:service_mgr d:\fb30_backup\security.fbk d:\fb50_data\security_30.fdb
 ----
 
 3. Сохраните следующий скрипт для переноса пользователей в файл `copy_user.sql`
@@ -1276,7 +1273,7 @@ DataTypeCompatibility = 3.0
 Однако со временем вы можете начать внедрять поддержку новых типов в своё приложение.
 Естественно, это будет происходить постепенно - сначала один тип, потом другой и так далее.
 В этом случае вам надо настроить отображение тех типов, поддержку которых вы ещё не доделали, на другие типы данных.
-Для этого используется оператор SET BIND OF.
+Для этого используется оператор `SET BIND OF`.
 
 [listing,subs=+quotes]
 .Синтаксис
