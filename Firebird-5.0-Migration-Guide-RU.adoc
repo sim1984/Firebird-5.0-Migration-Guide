@@ -1,6 +1,6 @@
 = Руководство по миграции на Firebird 5.0
 Симонов Денис
-v1.0 от 20.02.2024
+v1.0 от 23.02.2024
 :doctype: book
 :sectnums:
 :sectanchors:
@@ -1310,7 +1310,7 @@ SET BIND OF { <type-from> | TIME ZONE } TO { <type-to> | LEGACY | NATIVE | EXTEN
 Ключевое слово `LEGACY` в части `TO` используется, когда тип данных, отсутствующий в предыдущей версии Firebird, должен быть представлен способом понятным для старого клиентского программного обеспечения (возможна некоторая потеря данных). Существуют следующие преобразования в `LEGACY` типы:
 
 .Преобразования в legacy типы
-[cols="<1,<1", options="header",stripes="none"]
+[cols="<1,<1,<1", options="header",stripes="none"]
 |===
 ^| DataTypeCompatibility
 ^| Native тип
