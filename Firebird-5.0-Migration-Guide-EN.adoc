@@ -1,4 +1,4 @@
-= Migration Guide to Firebird 5.0
+= Practical Migration Guide to Firebird 5.0
 Denis Simonov
 v1.0 from 23.02.2024
 :doctype: book
@@ -34,7 +34,9 @@ ifdef::backend-html5[]
 endif::[]
 
 [dedication%notitle]
-This material was created with the support and sponsorship of the company https://www.ibase.ru[iBase.ru], which develops Firebird SQL tools for enterprises and provides technical support service for Firebird SQL.
+This material was created with the support and sponsorship of the company IBSurgeon, developer of HQbird, advanced distribution of Firebird for enterprises, 
+and https://ib-aid.com/mass-migration-framework-for-firebird[Mass Migration Framework for Firebird], toolset to perform migration of many (100+) servers during several days.
+
 
 The material is released under the Public Documentation License https://www.firebirdsql.org/file/documentation/html/en/licenses/pdl/public-documentation-license.html[]
 
@@ -44,8 +46,6 @@ toc::[]
 == Introduction
 
 This article is intended primarily for those who plan to upgrade the Firebird DBMS to version 5.0 in the near future. Many administrators still use Firebird 2.5, but plan to upgrade to version 5.0. That is why the process of migration from Firebird versions 2.5, 3.0 and 4.0 is described here.
-
-The sponsor of writing the article "Migration Guide to Firebird 5.0" is IBSurgeon (iBase.ru) (https://www.ib-aid.com[], https://www.ibase.ru[]): technical support and developer and administrator tools for Firebird SQL.
 
 == Manual installation of Firebird 5.0 in Windows
 
@@ -128,7 +128,7 @@ Before installing and running Firebird as a service, you need to choose the serv
 
 ==== Server mode
 
-By default, Firebird will start in `SuperServer` mode. If you want the server to run in another architecture, you need to change the value of the `ServerMode` parameter in `firebird.conf`. Uncomment it (remove the hash) and set the desired mode: `Super`, `SuperClassic` or `Classic`.
+By default, Firebird will start in `SuperServer` mode. If you want the server to run in another architecture, you need to change the value of the `ServerMode` parameter in `firebird.conf`. Uncomment it (remove the hash) and set the desired mode: `Super`, `SuperClassic` or `Classic`. For example, to set Classic: 
 
 [listing,subs=+quotes]
 ----
@@ -211,6 +211,12 @@ RemoteServicePort = 3051
 ----
 
 You also need to set unique values for the IpcName parameter for each instance of the DBMS server. This will avoid error messages in `firebird.log`. These errors are not critical if you do not use the XNET protocol. However, if it is used, then you should keep in mind that this parameter will have to be changed on the client side through DPB.
+
+==== How to create firebird.conf for better performance?
+
+To optimize the performance of your VM/hardware, consider generating firebird.conf and databases.conf for version 5 with the https://cc.ib-aid.com/democalc.html[Configuration Calculator for Firebird], a free tool provided by IBSurgeon.  These configurations will outperform the default settings. 
+Just remember, you'll need to manually implement the suggested changes from sections above into the configuration produced by the Calculator.
+
 
 === Installing and running Firebird as a service
 
@@ -1013,8 +1019,8 @@ The old authentication method is also available, but disabled by default as it i
 The Release Notes 3.0 describe how to transfer users from `Legacy_UserManager` to `SRP`, but in this case you will not be able to connect via `fbclient` version 2.5. In addition, it is impossible to transfer passwords from `Legacy_UserManager` to `SRP`.
 The proposed script will transfer the user list, but random passwords will be generated.
 If you want to restore your previous passwords, you will have to do it manually.
-I wrote an alternative script that allows you to transfer users from `security2.fdb` to `security5.fdb` in the `Legacy_UserManager` plugin.
-Here I will describe both options.
+We wrote an alternative script that allows you to transfer users from `security2.fdb` to `security5.fdb` in the `Legacy_UserManager` plugin.
+Here we will describe both options.
 
 ==== Copying user list to SRP plugin
 
@@ -1480,10 +1486,16 @@ WHEN MATCHED THEN
 RETURNING OLD.QUANTITY, NEW.QUANTITY, SRC.QUANTITY;
 ----
 
+== Mass Migration Framework for Firebird
+
+If you're looking to migrate a bunch of servers—like over a hundred—and you want it done smoothly over just a few days, you might want to check out the https://ib-aid.com/mass-migration-framework-for-firebird[Mass Migration Framework for Firebird]. It's got all the pro tools and support you'll need to make the migration a breeze.
+
+
 == Conclusion
 
-In this article, I tried to describe the most common problems and their solutions when migrating to Firebird 5.0 from Firebird 2.5, 3.0 and 4.0.
-I hope that this article will help you to migrate your databases and applications to Firebird 5.0 and take advantage of the new version.
+In this article, we tried to describe the most common problems and their solutions when migrating to Firebird 5.0 from Firebird 2.5, 3.0 and 4.0.
+We hope that this article will help you to migrate your databases and applications to Firebird 5.0 and take advantage of the new version.
+
 
 
 
